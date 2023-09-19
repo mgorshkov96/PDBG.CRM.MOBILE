@@ -12,9 +12,9 @@ namespace PDBG.CRM.MOBILE
 	{
 		private static HttpClient httpClient = new HttpClient();
 
-		public static async Task<Employee>? LoginAsync(string login, string password)
+		public static async Task<Employee> LoginAsync(string login, string password)
 		{
-			Employee? agent = await httpClient.GetFromJsonAsync<Employee>($"https://pdbg-crm.ru/auth?login={login}&password={password}");
+			var agent = await httpClient.GetFromJsonAsync<Employee>($"https://pdbg-crm.ru/auth?login={login}&password={password}");
 
 			return agent;
 		}
@@ -35,6 +35,52 @@ namespace PDBG.CRM.MOBILE
 		{
 			var lead = await httpClient.GetFromJsonAsync<Lead>($"https://pdbg-crm.ru/api/leads?id={id}");
 			return lead;
+		}
+
+		public static async Task<bool> AppointLead(int agentId, int leadId)
+		{
+			var result = await httpClient.GetAsync($"https://pdbg-crm.ru/api/leads/appoint?agentId={agentId}&leadId={leadId}");
+
+			if (!result.IsSuccessStatusCode)
+			{
+				return false;
+			}
+			
+			return true;
+		}
+
+		public static async Task<bool> CloseLead(Lead lead)
+		{
+			JsonContent content = JsonContent.Create(lead);
+
+			var result = await httpClient.PutAsync($"https://pdbg-crm.ru/api/leads", content);
+
+			if (!result.IsSuccessStatusCode)
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+		public static async Task<bool> AddLocation(LocationLog locationLog)
+		{
+			JsonContent content = JsonContent.Create(locationLog);
+
+			var result = await httpClient.PostAsync($"https://pdbg-crm.ru/api/location", content);
+
+			if (!result.IsSuccessStatusCode)
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+		public static async Task ChangeAgentStatus(Employee agent)
+		{
+			JsonContent content = JsonContent.Create(agent);
+			await httpClient.PutAsync($"https://pdbg-crm.ru/api/employees", content);
 		}
 	}
 }

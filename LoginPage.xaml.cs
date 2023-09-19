@@ -17,17 +17,16 @@ public partial class LoginPage : ContentPage
 		string login = LoginEntry.Text;
 		string password = PasswordEntry.Text;
 
-		var agent = await PDBGApiService.LoginAsync(login, password);
-
-		if (agent != null)
+		try
 		{
+			var agent = await PDBGApiService.LoginAsync(login, password);
 			_main.User = agent;
-			await Navigation.PopModalAsync();			
+			await Navigation.PopModalAsync();
 		}
-		else
+		catch (HttpRequestException)
 		{
-			await DisplayAlert("Ошибка авторизации", "Логин или пароль введены неверно", "Ок");
-		}
+			await DisplayAlert("Ошибка авторизации", "Войти не удалось, проверьте логин и пароль.", "Ок");
+		}				
 	}
 }
 

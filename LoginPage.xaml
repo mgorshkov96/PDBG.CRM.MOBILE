@@ -33,6 +33,7 @@
             
             <Entry  
                 x:Name="PasswordEntry"
+                IsPassword="True"
                 FontSize="18" />
 
             <Button

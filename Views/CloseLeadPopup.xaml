@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="PDBG.CRM.MOBILE.CloseLeadPopup"
+               CanBeDismissedByTappingOutsideOfPopup="False"
+               
+               >
+    <VerticalStackLayout
+        Padding="20"
+        VerticalOptions="Center"
+        BackgroundColor="White"
+        Spacing="10">
+        <Label 
+            Text="Заполните карточку"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="24"/>
+
+        <Label Text="Выберите статус" FontAttributes="Bold"  FontSize="16"/>
+        <Picker x:Name="selectStatus" SelectedIndexChanged="selectStatus_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>Договор заключён</x:String>
+                <x:String>Отказ</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <VerticalStackLayout x:Name="sumSpace" IsVisible="false">
+            <Label Text="Введите сумму" FontAttributes="Bold" FontSize="16"/>
+            <Entry x:Name="LeadPopupSum" FontSize="14" HorizontalOptions="Fill" Keyboard="Numeric"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout x:Name="reasonSpace" IsVisible="false">
+            <Label Text="Причина отказа" FontAttributes="Bold" FontSize="16"/>
+            <Editor x:Name="LeadPopupRejReason" FontSize="14" HorizontalOptions="Fill" HeightRequest="100"/>
+        </VerticalStackLayout>
+        
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+            <Button x:Name ="SaveLeadPopup" Text="Сохранить" Clicked="SaveLeadPopup_Clicked"  Margin="0,0,3,0"/>
+            <Button x:Name="closePopup" Text="Отмена" Clicked="closePopup_Clicked" Margin="3,0,0,0"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</toolkit:Popup>

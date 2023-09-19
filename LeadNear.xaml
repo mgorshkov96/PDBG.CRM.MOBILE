@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="PDBG.CRM.MOBILE.LeadInWork"
+             x:Class="PDBG.CRM.MOBILE.LeadNear"
              Title="PDBG-CRM"
              NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout
@@ -25,10 +24,6 @@
             <Label Text="Клиент" FontAttributes="Bold" FontSize="16"/>
             
         </VerticalStackLayout>
-        <VerticalStackLayout x:Name="ClientPhone" Margin="0,0,0,10">
-            <Label Text="Телефон клиента" FontAttributes="Bold" FontSize="16"/>
-
-        </VerticalStackLayout>
         <VerticalStackLayout x:Name="Dead" Margin="0,0,0,10">
             <Label Text="Умерший" FontAttributes="Bold" FontSize="16"/>
             
@@ -46,7 +41,6 @@
             
         </VerticalStackLayout>
 
-        
-        <Button x:Name="CloseLead"  Text="Закрыть заявку" Clicked="CloseLead_Clicked"/>
+        <Button x:Name="Accept" Text="Принять" Clicked="Button_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

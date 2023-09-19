@@ -1,31 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PDBG.CRM.MOBILE.MainPage"
-             
+             x:Class="PDBG.CRM.MOBILE.MainPage" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              NavigatedTo="ContentPage_NavigatedTo">
 
     <ScrollView>
         <VerticalStackLayout>
             <VerticalStackLayout BackgroundColor="LightGray">
+                
                 <HorizontalStackLayout HorizontalOptions="End">
+                    <Button
+                    x:Name="Refresh"
+                    Clicked="Refresh_Clicked"
+                    Text="Обновить"
+                    HorizontalOptions="Start"
+                    Margin="0, 5, 10, 5"/>
                     <Label
                         Text="Статус:"
                         FontSize="18"
                         VerticalOptions="Center"
                         />
                     <Switch
-                        x:Name="agentStatus"/>
+                        x:Name="agentStatus"
+                        Toggled="agentStatus_Toggled"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout
                 Padding="20,0">
-                <Button
-                    x:Name="Refresh"
-                    Clicked="Refresh_Clicked"
-                    Text="Обновить"
-                    HorizontalOptions="Start"
-                    Margin="0, 5, 0, 0"/>
+                
                 <Label
                 Text="Заявки рядом"
                 SemanticProperties.HeadingLevel="Level1" 
@@ -34,22 +37,7 @@
                 HorizontalOptions="Start" />
                 
                 <VerticalStackLayout x:Name="leadsNear">
-                    <VerticalStackLayout
-                        BackgroundColor="LightSalmon" 
-                        Padding="8"
-                        Margin="0,5,0,10">
-
-                        <Label Text="Заявка № 100500 от 01.01.2001 14:38" FontAttributes="Bold"/>
-                        <Label Text="Умерший: Иванов Иван Иванович" FontAttributes="Bold" />
-                    </VerticalStackLayout>
-                    <VerticalStackLayout
-                        BackgroundColor="LightSalmon" 
-                        Padding="8"
-                        Margin="0,0,0,5">
-
-                        <Label Text="Заявка № 100500 от 01.01.2001 14:38" FontAttributes="Bold" />
-                        <Label Text="Умерший: Иванов Иван Иванович" FontAttributes="Bold" />
-                    </VerticalStackLayout>
+                    
                 </VerticalStackLayout>
               
                 <Label
@@ -60,7 +48,7 @@
                 HorizontalOptions="Start" />
 
                 <VerticalStackLayout x:Name="leadsInWork">
-                    <Label>Нет заказов в работе</Label>
+                    
                 </VerticalStackLayout>
                 
             </VerticalStackLayout>
